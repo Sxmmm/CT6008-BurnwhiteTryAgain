@@ -7,10 +7,11 @@ using UnityEngine;
 public abstract class BossAbility : MonoBehaviour
 {
     protected Boss boss;
-    //protected Player player;
-    public virtual void AbilitySetUp(Boss boss)
+    protected MultiMovementV2 playerMovement;
+    public virtual void AbilitySetUp(Boss boss, MultiMovementV2 multiMovementV2)
     {
         this.boss = boss;
+        this.playerMovement = multiMovementV2;
     }
 
     public abstract void AbilityStart();

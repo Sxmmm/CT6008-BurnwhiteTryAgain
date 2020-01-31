@@ -19,7 +19,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private BossAbilityHeal abilityHeal;
     [SerializeField] private BossAbilityShoot abilityShoot;
 
-    [SerializeField] private Transform player;
+    [SerializeField] private MultiMovementV2 playerMovement;
 
     private enum BossState {
         Idle,

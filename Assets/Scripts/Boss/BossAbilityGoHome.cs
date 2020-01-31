@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class BossAbilityGoHome : BossAbility
 {
-    public override void AbilitySetUp(Boss boss)
+    public override void AbilitySetUp(Boss boss, MultiMovementV2 multiMovementV2)
     {
+        base.AbilitySetUp(boss, multiMovementV2);
         this.boss = boss;
     }
 
