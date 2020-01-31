@@ -19,6 +19,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private BossAbilityHeal abilityHeal;
     [SerializeField] private BossAbilityShoot abilityShoot;
 
+    [SerializeField] private Transform player;
+
     private enum BossState {
         Idle,
         GoHome,
@@ -26,7 +28,6 @@ public class Boss : MonoBehaviour
         ShootAttack,
         MeleeAttack,
         Dead
-
     }
 
     private BossState currentState;

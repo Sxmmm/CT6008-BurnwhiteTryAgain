@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class BossAbility : MonoBehaviour
 {
     protected Boss boss;
+    //protected Player player;
     public virtual void AbilitySetUp(Boss boss)
     {
         this.boss = boss;

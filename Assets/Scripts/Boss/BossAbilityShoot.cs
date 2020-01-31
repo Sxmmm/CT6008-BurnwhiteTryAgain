@@ -10,6 +10,9 @@ public class BossAbilityShoot : BossAbility
     [SerializeField] private float shootCoolDown;
     private float lastShotTime;
 
+    private float shotdamage;
+    private float shotSpeed;
+
     private Transform bulletSpawnPoint;
     private Transform turretHeadRotatePoint;
     private Transform turretHeadAimPoint;
@@ -42,10 +45,8 @@ public class BossAbilityShoot : BossAbility
 
     private void Shoot()
     {
-        Instantiate(prefabBossBullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation, null);
-
-
-
+        BossBullet bullet = Instantiate(prefabBossBullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation, null);
+        bullet.Fire(shotdamage, shotSpeed);
     }
 
 }

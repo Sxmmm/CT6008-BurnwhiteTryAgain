@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    public float damage;
+    [HideInInspector] public float damage;
+
     [SerializeField] private Rigidbody rBody;
     private float maxLifeTime = 10f;
 
