@@ -31,8 +31,7 @@ public class Crosshair : MonoBehaviour
                 EnemyOnCrossHair();
             } else if (hit.transform.tag == "Follower") {
                 FriendlyOnCrossHair();
-            } 
-            else {
+            } else {
                 ReturnCrossHair();
             }
         } else {

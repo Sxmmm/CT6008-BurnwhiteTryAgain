@@ -85,8 +85,4 @@ public class MultiMovementV2 : MonoBehaviour
             isGrounded = true;
         }
     }
-
-    public Vector3 GetAccelaration() {
-        return rb.velocity;
-    }
 }
