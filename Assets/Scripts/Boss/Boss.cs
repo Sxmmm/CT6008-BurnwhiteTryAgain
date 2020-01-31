@@ -36,12 +36,17 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        abilityGoHome.AbilitySetUp(this, playerMovement);
+        abilityHeal.AbilitySetUp(this, playerMovement);
+        abilityShoot.AbilitySetUp(this, playerMovement);
+
+        ChooseAbility();
     }
 
     void ChooseAbility()
     {
-
+        currentState = BossState.ShootAttack;
+        abilityShoot.AbilityStart();
     }
 
     // Update is called once per frame

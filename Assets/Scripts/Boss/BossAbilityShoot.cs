@@ -10,15 +10,15 @@ public class BossAbilityShoot : BossAbility
     [SerializeField] private float shootCoolDown;
     private float lastShotTime;
 
-    private float shotdamage;
-    private float shotSpeed;
+    [SerializeField] private float shotdamage;
+    [SerializeField] private float shotSpeed;
 
-    private Transform bulletSpawnPoint;
-    private Transform turretHeadRotatePoint;
-    private Transform turretHeadAimPoint;
+    [SerializeField] private Transform bulletSpawnPoint;
+    [SerializeField] private Transform turretHeadRotatePoint;
+    [SerializeField] private Transform turretHeadAimPoint;
 
-    private float rotateTurretSpeed;
-    private float pivotTurretSpeed;
+    [SerializeField] private float rotateTurretSpeed;
+    [SerializeField] private float pivotTurretSpeed;
 
 
     public override void AbilitySetUp(Boss boss, MultiMovementV2 multiMovementV2)
@@ -68,19 +68,21 @@ public class BossAbilityShoot : BossAbility
     private void AimAtPlayer()
     {
         //No idea if this will work
-        Vector3 targetPosition = playerMovement.transform.position + (Vector3.Distance(this.transform.position, playerMovement.transform.position) * Time.deltaTime * shotSpeed * playerMovement.playerAccelaration);
+        Vector3 targetPosition = playerMovement.transform.position;// + (Vector3.Distance(this.transform.position, playerMovement.transform.position) * Time.deltaTime * shotSpeed * playerMovement.playerAccelaration);
 
         float targetTurretRotateYangle = AngleBetweenPoints(turretHeadRotatePoint.transform.position, targetPosition);
-        turretHeadRotatePoint.rotation = Quaternion.Euler(new Vector3(0f, Mathf.MoveTowardsAngle(turretHeadRotatePoint.rotation.y, targetTurretRotateYangle, rotateTurretSpeed * Time.deltaTime), 0f));
 
+        float newTurretAngle = Mathf.MoveTowardsAngle(turretHeadRotatePoint.rotation.eulerAngles.y, targetTurretRotateYangle, rotateTurretSpeed * Time.deltaTime);
+        Debug.Log(" targetRot " + targetTurretRotateYangle + " new turret angle " + newTurretAngle);
+
+        Quaternion newTurretRot = Quaternion.Euler(new Vector3(0f, newTurretAngle, 0f));
+        Debug.Log("new rot " + newTurretRot);
+
+        turretHeadRotatePoint.rotation = newTurretRot;
     }
 
-    float AngleBetweenPoints(Vector2 a, Vector2 b)
+    float AngleBetweenPoints(Vector3 a, Vector3 b)
     {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(a.z - b.z, a.x - b.x) * Mathf.Rad2Deg;
     }
-
-
-
-
 }
