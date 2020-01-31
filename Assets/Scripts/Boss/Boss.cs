@@ -15,7 +15,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
 
-
+    [SerializeField] private BossAbilityGoHome goHome;
+    [SerializeField] private BossAbilityHeal heal;
+    [SerializeField] private BossAbilityHeal shoot;
 
     private enum BossState {
         Idle,
@@ -23,6 +25,7 @@ public class Boss : MonoBehaviour
         Heal,
         ShootAttack,
         MeleeAttack,
+        Dead
 
     }
 
@@ -65,5 +68,22 @@ public class Boss : MonoBehaviour
         navAgent.enabled = true;
         navAgent.SetDestination(vector3);
     }
+
+    public void TakeDamage(float ammount)
+    {
+        health -= ammount;
+        CheckState();
+    }
+
+    private void CheckState()
+    {
+
+
+
+
+
+    }
+
+
 
 }
