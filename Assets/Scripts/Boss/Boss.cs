@@ -15,9 +15,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
 
-    [SerializeField] private BossAbilityGoHome goHome;
-    [SerializeField] private BossAbilityHeal heal;
-    [SerializeField] private BossAbilityHeal shoot;
+    [SerializeField] private BossAbilityGoHome abilityGoHome;
+    [SerializeField] private BossAbilityHeal abilityHeal;
+    [SerializeField] private BossAbilityShoot abilityShoot;
 
     private enum BossState {
         Idle,
@@ -53,20 +53,17 @@ public class Boss : MonoBehaviour
 
                 break;
             case BossState.GoHome:
+                abilityGoHome.AbilityUpdate();
                 break;
             case BossState.Heal:
+                abilityHeal.AbilityUpdate();
                 break;
             case BossState.ShootAttack:
+                abilityShoot.AbilityUpdate();
                 break;
             default:
                 break;
         }
-    }
-
-    public void SetNavTarget(Vector3 vector3)
-    {
-        navAgent.enabled = true;
-        navAgent.SetDestination(vector3);
     }
 
     public void TakeDamage(float ammount)
@@ -78,12 +75,25 @@ public class Boss : MonoBehaviour
     private void CheckState()
     {
 
+    }
 
-
-
-
+    #region movement
+    public void SetNavTarget(Vector3 vector3)
+    {
+        navAgent.enabled = true;
+        navAgent.SetDestination(vector3);
     }
 
 
+    private BoxCollider movemenCollider;
+    private void MoveToRandomLocation()
+    {
+        navAgent.enabled = true;
+        navAgent.SetDestination(new Vector3(Random.Range(movemenCollider.bounds.min.x, movemenCollider.bounds.max.x), 0f, Random.Range(movemenCollider.bounds.min.z, movemenCollider.bounds.max.z)));
+    }
+
+
+
+    #endregion
 
 }

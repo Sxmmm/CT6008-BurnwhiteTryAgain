@@ -4,28 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAbility : MonoBehaviour
+public abstract class BossAbility : MonoBehaviour
 {
-    private Boss boss;
-    public void AbilitySetUp(Boss boss)
+    protected Boss boss;
+    public virtual void AbilitySetUp(Boss boss)
     {
         this.boss = boss;
     }
 
-    public void AbilityStart()
-    {
-
-    }
+    public abstract void AbilityStart();
 
     // Update is called once per frame
-    public void AbilityUpdate()
-    {
-        
-    }
+    public abstract void AbilityUpdate();
 
-    public void StopAbility()
-    {
-
-    }
+    public abstract void StopAbility();
 
 }
