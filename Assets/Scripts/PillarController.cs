@@ -74,7 +74,7 @@ public class PillarController : MonoBehaviour
                     t = 1f;
 
                 Vector3 p1 = Vector3.Lerp(BeamOrigin, middlePos, t);
-                Vector3 p2 = Vector3.Lerp(middlePos, h.hc.transform.position, t);
+                Vector3 p2 = Vector3.Lerp(middlePos, h.hc.ObjectBeamPos, t);
                 trajectory[i] = Vector3.Lerp(p1, p2, t);
             }
 
