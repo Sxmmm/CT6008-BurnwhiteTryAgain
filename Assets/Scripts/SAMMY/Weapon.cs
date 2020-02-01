@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private float fireRate = 0.05f;
+    [SerializeField] private float fireRate = 0.1f;
     [SerializeField] private float damage = 5;
     public GameObject orientaion;
     public GameObject bulletObject;
@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     public bool isShooting;
     private float timer;
     private GameObject cam;
+    public ParticleSystem muzzleFlash;
 
     private void Start() {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -39,10 +40,7 @@ public class Weapon : MonoBehaviour
     }
 
     private void ShootAction() {
-        //GameObject bullet = Instantiate(bulletObject, orientaion.transform.position, orientaion.transform.rotation);
-        //bullet.GetComponent<Bullet>().myDamage = damage;
-
-        MuzzleFlash(); //DOES NOTHING NEED MUZZLE FLASH
+        MuzzleFlash();
 
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 100.0f)) {
@@ -57,7 +55,7 @@ public class Weapon : MonoBehaviour
     }
 
     private void MuzzleFlash() {
-        Debug.Log("Do the muzzle flash");
+        muzzleFlash.Play(true);
     }
 
     public void ShootTrigger(InputAction.CallbackContext ctx) {
