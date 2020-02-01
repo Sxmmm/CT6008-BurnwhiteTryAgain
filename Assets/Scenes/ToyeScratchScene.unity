@@ -360,29 +360,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1341418876253375282, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1341418876253375282, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1377815442232913084, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1309326062}
-    - target: {fileID: 4375602104175374292, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375602104175374292, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375602104175374292, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+    - target: {fileID: 1760429820085157736, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 9.36
       objectReference: {fileID: 0}
     - target: {fileID: 6241681320802366681, guid: 17ffdeb4ea76a0441b07a558d017b695, type: 3}
       propertyPath: m_Name

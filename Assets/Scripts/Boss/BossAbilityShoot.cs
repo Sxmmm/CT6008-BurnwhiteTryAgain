@@ -65,20 +65,31 @@ public class BossAbilityShoot : BossAbility
         }
     }
 
+
     private void AimAtPlayer()
     {
-        //No idea if this will work
-        Vector3 targetPosition = playerMovement.transform.position;// + (Vector3.Distance(this.transform.position, playerMovement.transform.position) * Time.deltaTime * shotSpeed * playerMovement.playerAccelaration);
 
-        float targetTurretRotateYangle = AngleBetweenPoints(turretHeadRotatePoint.transform.position, targetPosition);
+        //First part is rotating turret head to look at player on y axis
 
-        float newTurretAngle = Mathf.MoveTowardsAngle(turretHeadRotatePoint.rotation.eulerAngles.y, targetTurretRotateYangle, rotateTurretSpeed * Time.deltaTime);
-        Debug.Log(" targetRot " + targetTurretRotateYangle + " new turret angle " + newTurretAngle);
+        //No idea if this will work but should incorporate player accelleration?
+        Vector3 targetPosition = playerMovement.transform.position + (Vector3.Distance(this.transform.position, playerMovement.transform.position) * Time.deltaTime * shotSpeed * playerMovement.playerAccelaration);
 
-        Quaternion newTurretRot = Quaternion.Euler(new Vector3(0f, newTurretAngle, 0f));
-        Debug.Log("new rot " + newTurretRot);
+        Vector3 lookPos = new Vector3(targetPosition.x, turretHeadRotatePoint.position.y, targetPosition.z);
+        Vector3 lookDir = (lookPos - turretHeadRotatePoint.position).normalized;
+        Quaternion look = Quaternion.LookRotation(lookDir, transform.up);
+        turretHeadRotatePoint.rotation = Quaternion.Lerp(turretHeadRotatePoint.rotation, look, rotateTurretSpeed * Time.deltaTime);
 
-        turretHeadRotatePoint.rotation = newTurretRot;
+        //second part is pivoting turret arm to look at player on z axis (up down)
+
+        Vector3 pivotLookPos = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
+        Vector3 pivotLookDir = (pivotLookPos - turretHeadAimPoint.position).normalized;
+        Quaternion pivot = Quaternion.LookRotation(pivotLookDir, transform.right);
+
+        float xClamp = Mathf.Clamp(pivot.eulerAngles.x, -30, 30);
+        pivot = Quaternion.Euler(xClamp, 0, 0);
+
+        turretHeadAimPoint.rotation = Quaternion.Lerp(turretHeadAimPoint.rotation, pivot, pivotTurretSpeed * Time.deltaTime);
+
     }
 
     float AngleBetweenPoints(Vector3 a, Vector3 b)
