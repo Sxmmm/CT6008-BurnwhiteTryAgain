@@ -1,4 +1,5 @@
 ﻿//Sam Baker
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,8 +12,12 @@ public class Weapon : MonoBehaviour
     public WEAPON_TYPE weaponType;
     public bool isShooting;
     private float timer;
+    private GameObject cam;
 
-    private void Start() => timer = fireRate;
+    private void Start() {
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
+        timer = fireRate;
+    }
 
     private void Update() {
         if (isShooting) {
@@ -34,8 +39,25 @@ public class Weapon : MonoBehaviour
     }
 
     private void ShootAction() {
-        GameObject bullet = Instantiate(bulletObject, orientaion.transform.position, orientaion.transform.rotation);
-        bullet.GetComponent<Bullet>().myDamage = damage;
+        //GameObject bullet = Instantiate(bulletObject, orientaion.transform.position, orientaion.transform.rotation);
+        //bullet.GetComponent<Bullet>().myDamage = damage;
+
+        MuzzleFlash(); //DOES NOTHING NEED MUZZLE FLASH
+
+        RaycastHit hit;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 100.0f)) {
+            if (hit.transform.tag == "Enemy") {
+                hit.transform.GetComponent<Enemy>().TakeBulletDamage(damage);
+            } else {
+                //DO NOTHING
+            }
+        } else {
+            //DO NOTHING
+        }
+    }
+
+    private void MuzzleFlash() {
+        Debug.Log("Do the muzzle flash");
     }
 
     public void ShootTrigger(InputAction.CallbackContext ctx) {

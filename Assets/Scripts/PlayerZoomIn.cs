@@ -33,14 +33,15 @@ public class PlayerZoomIn : MonoBehaviour
                 cam.transform.localRotation = origRot;
                 crossHair.SetActive(false);
                 zoomIn = false;
+                GetComponent<MultiMovementV2>().moveSpeed = 7.5f;
             } else {
                 //ZoomIn
                 origRot = cam.transform.localRotation;
                 cam.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                 crossHair.SetActive(true);
                 zoomIn = true;
+                GetComponent<MultiMovementV2>().moveSpeed = 5.0f;
             }
-            GetComponent<MultiMovementV2>().moveSpeed = 7.5f;
         }
     }   
 }

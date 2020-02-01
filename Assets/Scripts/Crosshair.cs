@@ -21,6 +21,7 @@ public class Crosshair : MonoBehaviour
 
     private void Start() {
         crosshair.color = Color.black;
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void Update() {
