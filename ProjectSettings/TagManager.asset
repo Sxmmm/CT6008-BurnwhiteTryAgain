@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - CrossHair
   - Follower
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,8 @@ public class PlayerRotation : MonoBehaviour
     public Transform player;
     private float xAxisClamp;
 
-    private bool locked;
-    private GameObject enemy;
+    private bool locked = false;
+    //private GameObject enemy;
 
     private Controls controls = null;
 
@@ -26,11 +26,11 @@ public class PlayerRotation : MonoBehaviour
         transform.position = player.position;
         if (locked) {
             Debug.Log("Locked");
-            if (enemy != null) {
-                transform.LookAt(enemy.transform.position);
-            } else {
-                locked = false;
-            }
+            //if (enemy != null) {
+            //    transform.LookAt(enemy.transform.position);
+            //} else {
+            //    locked = false;
+            //}
         } else {
             Debug.Log("Unlocked");
             Rotate();

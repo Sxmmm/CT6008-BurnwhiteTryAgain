@@ -9,7 +9,7 @@ public class Crosshair : MonoBehaviour
 
     public GameObject enemyTarget;
 
-    [SerializeField] private GameObject playerRotation;
+    public GameObject playerRotation;
 
     private Controls controls = null;
 
@@ -21,6 +21,7 @@ public class Crosshair : MonoBehaviour
 
     private void Start() {
         crosshair.color = Color.black;
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void Update() {
@@ -31,8 +32,7 @@ public class Crosshair : MonoBehaviour
                 EnemyOnCrossHair();
             } else if (hit.transform.tag == "Follower") {
                 FriendlyOnCrossHair();
-            } 
-            else {
+            } else {
                 ReturnCrossHair();
             }
         } else {

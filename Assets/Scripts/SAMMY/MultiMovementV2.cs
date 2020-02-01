@@ -16,8 +16,8 @@ public class MultiMovementV2 : MonoBehaviour
     private Rigidbody rb;
     private bool leftStickPress;
 
-    [SerializeField] private GameObject playerOrientation;
-    [SerializeField] private GameObject playerFace;
+    public GameObject playerOrientation;
+    public GameObject playerFace;
 
     private float heading;
 
@@ -35,7 +35,12 @@ public class MultiMovementV2 : MonoBehaviour
         jump = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
     }
 
-    private void Update() => Move();
+    private void Update() {
+        Move();
+        if (GetComponent<PlayerZoomIn>().zoomIn) {
+            moveSpeed = 5.0f;
+        }
+    }
 
     public void Jump(InputAction.CallbackContext ctx) {
         if (ctx.performed) {
@@ -48,9 +53,6 @@ public class MultiMovementV2 : MonoBehaviour
     }
 
     public void LeftStickPress(InputAction.CallbackContext ctx) {
-        if (GetComponent<PlayerZoomIn>().zoomIn == true) {
-            return;
-        }
         if (ctx.performed) {
             Debug.Log("Press");
             if (leftStickPress) {
@@ -73,8 +75,14 @@ public class MultiMovementV2 : MonoBehaviour
         rotF = rotF.normalized;
         rotR = rotR.normalized;
         playerFace.transform.position = transform.position + (rotF * movementInput.y + rotR * movementInput.x) * 100 * Time.deltaTime;
-        
-        transform.LookAt(playerFace.transform.position);
+        if (GetComponent<PlayerZoomIn>().zoomIn) {
+            Vector3 playerYRot = playerOrientation.transform.eulerAngles;
+            playerYRot.x = transform.eulerAngles.x;
+            playerYRot.z = transform.eulerAngles.z;
+            transform.eulerAngles = playerYRot;
+        } else {
+            transform.LookAt(playerFace.transform.position);
+        }
         transform.position += (rotF * movementInput.y + rotR * movementInput.x) * moveSpeed * Time.deltaTime;
         //Variable for Tom
         playerAccelaration = rotF * movementInput.y + rotR * movementInput.x *moveSpeed;

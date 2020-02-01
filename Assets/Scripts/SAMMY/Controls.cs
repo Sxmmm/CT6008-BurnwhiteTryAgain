@@ -105,6 +105,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""ShootIn"",
+                    ""type"": ""Button"",
+                    ""id"": ""d52dfb12-a90e-4ec6-a125-22ce7792281b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""ShootOut"",
+                    ""type"": ""Button"",
+                    ""id"": ""63a7d865-b044-47b3-a1e5-828d092fbefc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -349,6 +365,50 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""RightStickRelease"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad362e06-1dc0-47e7-90bb-7aafe86baa3a"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d51b7d4-cf75-4e2f-b8a4-cb203da5653e"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a8ceb29-7e6f-4c23-a859-3f9929c1b92d"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""872145b7-cd13-4ba6-a917-1b6dcfc1c0a4"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -368,6 +428,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_ZoomOut = m_Player.FindAction("ZoomOut", throwIfNotFound: true);
         m_Player_RightStickPress = m_Player.FindAction("RightStickPress", throwIfNotFound: true);
         m_Player_RightStickRelease = m_Player.FindAction("RightStickRelease", throwIfNotFound: true);
+        m_Player_ShootIn = m_Player.FindAction("ShootIn", throwIfNotFound: true);
+        m_Player_ShootOut = m_Player.FindAction("ShootOut", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -428,6 +490,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_ZoomOut;
     private readonly InputAction m_Player_RightStickPress;
     private readonly InputAction m_Player_RightStickRelease;
+    private readonly InputAction m_Player_ShootIn;
+    private readonly InputAction m_Player_ShootOut;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -443,6 +507,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @ZoomOut => m_Wrapper.m_Player_ZoomOut;
         public InputAction @RightStickPress => m_Wrapper.m_Player_RightStickPress;
         public InputAction @RightStickRelease => m_Wrapper.m_Player_RightStickRelease;
+        public InputAction @ShootIn => m_Wrapper.m_Player_ShootIn;
+        public InputAction @ShootOut => m_Wrapper.m_Player_ShootOut;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -485,6 +551,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @RightStickRelease.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightStickRelease;
                 @RightStickRelease.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightStickRelease;
                 @RightStickRelease.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightStickRelease;
+                @ShootIn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootIn;
+                @ShootIn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootIn;
+                @ShootIn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootIn;
+                @ShootOut.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootOut;
+                @ShootOut.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootOut;
+                @ShootOut.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootOut;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -522,6 +594,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @RightStickRelease.started += instance.OnRightStickRelease;
                 @RightStickRelease.performed += instance.OnRightStickRelease;
                 @RightStickRelease.canceled += instance.OnRightStickRelease;
+                @ShootIn.started += instance.OnShootIn;
+                @ShootIn.performed += instance.OnShootIn;
+                @ShootIn.canceled += instance.OnShootIn;
+                @ShootOut.started += instance.OnShootOut;
+                @ShootOut.performed += instance.OnShootOut;
+                @ShootOut.canceled += instance.OnShootOut;
             }
         }
     }
@@ -539,5 +617,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnZoomOut(InputAction.CallbackContext context);
         void OnRightStickPress(InputAction.CallbackContext context);
         void OnRightStickRelease(InputAction.CallbackContext context);
+        void OnShootIn(InputAction.CallbackContext context);
+        void OnShootOut(InputAction.CallbackContext context);
     }
 }
