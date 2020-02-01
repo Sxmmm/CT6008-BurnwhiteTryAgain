@@ -248,7 +248,7 @@ MonoBehaviour:
   shotSpeed: 1000
   bulletSpawnPoint: {fileID: 559321600282284054}
   turretHeadRotatePoint: {fileID: 204545067881110553}
-  turretHeadAimPoint: {fileID: 1341418876253375282}
+  turretHeadAimPoint: {fileID: 1760429820085157736}
   rotateTurretSpeed: 25
   pivotTurretSpeed: 25
 --- !u!1 &8057679143619781742
@@ -341,14 +341,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 833859728117745809}
     m_Modifications:
-    - target: {fileID: 1879951574474126815, guid: 184b81419c150a24487da45a1743f702, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879951574474126815, guid: 184b81419c150a24487da45a1743f702, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 3761071168689426745, guid: 184b81419c150a24487da45a1743f702, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -409,9 +401,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 747017015582909172, guid: 184b81419c150a24487da45a1743f702, type: 3}
   m_PrefabInstance: {fileID: 615656843986960109}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1341418876253375282 stripped
+--- !u!4 &1760429820085157736 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1879951574474126815, guid: 184b81419c150a24487da45a1743f702, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1217393822926848389, guid: 184b81419c150a24487da45a1743f702, type: 3}
   m_PrefabInstance: {fileID: 615656843986960109}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &559321600282284054 stripped

@@ -36,6 +36,12 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if (playerMovement == null)
+        {
+            playerMovement = FindObjectOfType<MultiMovementV2>();
+        }
+
         abilityGoHome.AbilitySetUp(this, playerMovement);
         abilityHeal.AbilitySetUp(this, playerMovement);
         abilityShoot.AbilitySetUp(this, playerMovement);
