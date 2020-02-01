@@ -9,7 +9,7 @@ public class Crosshair : MonoBehaviour
 
     public GameObject enemyTarget;
 
-    [SerializeField] private GameObject playerRotation;
+    public GameObject playerRotation;
 
     private Controls controls = null;
 

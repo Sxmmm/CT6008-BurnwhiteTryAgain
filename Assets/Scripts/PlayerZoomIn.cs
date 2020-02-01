@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerZoomIn : MonoBehaviour
 {
     [SerializeField] private GameObject cam;
-    [SerializeField] private GameObject crossHair;
+    public GameObject crossHair;
     private Vector3 origPos;
     private Quaternion origRot;
     public bool zoomIn;
@@ -13,6 +13,7 @@ public class PlayerZoomIn : MonoBehaviour
 
 
     private void Start() {
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
         crossHair.SetActive(false);
         origPos = cam.transform.localPosition;
     }
@@ -29,14 +30,11 @@ public class PlayerZoomIn : MonoBehaviour
         if(ctx.performed) {
             if(zoomIn) {
                 //ZoomOut
-                Debug.Log("Zoom Out");
                 cam.transform.localRotation = origRot;
                 crossHair.SetActive(false);
                 zoomIn = false;
             } else {
                 //ZoomIn
-                Debug.Log("Zoom In");
-                //origPos = cam.transform.localPosition;
                 origRot = cam.transform.localRotation;
                 cam.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                 crossHair.SetActive(true);

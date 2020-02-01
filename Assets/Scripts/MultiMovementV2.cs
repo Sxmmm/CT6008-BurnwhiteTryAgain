@@ -16,8 +16,8 @@ public class MultiMovementV2 : MonoBehaviour
     private Rigidbody rb;
     private bool leftStickPress;
 
-    [SerializeField] private GameObject playerOrientation;
-    [SerializeField] private GameObject playerFace;
+    public GameObject playerOrientation;
+    public GameObject playerFace;
 
     private float heading;
 

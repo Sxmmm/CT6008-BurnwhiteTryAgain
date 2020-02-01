@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private float fireRate;
-    [SerializeField] private float damage;
-    [SerializeField] private GameObject orientaion;
+    [SerializeField] private float fireRate = 0.05f;
+    [SerializeField] private float damage = 5;
+    public GameObject orientaion;
     public GameObject bulletObject;
     public WEAPON_TYPE weaponType;
     public bool isShooting;
@@ -17,14 +17,16 @@ public class Weapon : MonoBehaviour
     private void Update() {
         if (isShooting) {
             //Shoot
-            if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerZoomIn>().zoomIn == false) {
-                isShooting = false;
-                return;
-            }
-            timer -= Time.deltaTime;
-            if (timer <= 0.0f) {
-                ShootAction();
-                timer = fireRate;
+            if (GameObject.FindGameObjectWithTag("Player") != null) {
+                if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerZoomIn>().zoomIn == false) {
+                    isShooting = false;
+                    return;
+                }
+                timer -= Time.deltaTime;
+                if (timer <= 0.0f) {
+                    ShootAction();
+                    timer = fireRate;
+                }
             }
         } else {
             //No Shoot
@@ -41,10 +43,12 @@ public class Weapon : MonoBehaviour
             if (isShooting) {
                 isShooting = false;
             } else {
-                if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerZoomIn>().zoomIn) {
-                    isShooting = true;
-                } else {
-                    return;
+                if (GameObject.FindGameObjectWithTag("Player") != null) {
+                    if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerZoomIn>().zoomIn) {
+                        isShooting = true;
+                    } else {
+                        return;
+                    }
                 }
             }
         }
