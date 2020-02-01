@@ -12,7 +12,7 @@ public class Boss : MonoBehaviour
     public float turnSpeed;
 
 
-    [SerializeField] private NavMeshAgent navAgent;
+    public NavMeshAgent navAgent;
     [SerializeField] private Animator animator;
 
     [SerializeField] private BossAbilityGoHome abilityGoHome;
@@ -20,6 +20,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private BossAbilityShoot abilityShoot;
 
     [SerializeField] private MultiMovementV2 playerMovement;
+
+    public LayerMask pillarLayer;
+    public LayerMask playerLayer;
 
     private enum BossState {
         Idle,

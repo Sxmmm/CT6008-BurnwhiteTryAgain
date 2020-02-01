@@ -20,6 +20,8 @@ public class BossAbilityShoot : BossAbility
     [SerializeField] private float rotateTurretSpeed;
     [SerializeField] private float pivotTurretSpeed;
 
+    private float minShootingDistance;
+    private float maxShootingDistance;
 
     public override void AbilitySetUp(Boss boss, MultiMovementV2 multiMovementV2)
     {
@@ -52,6 +54,43 @@ public class BossAbilityShoot : BossAbility
 
     private void MoveTowardsPlayer()
     {
+        //Move to a position where we can shoot the player
+        float distToPlayer = Vector3.Distance(playerMovement.transform.position, boss.navAgent.destination);
+        if (distToPlayer > maxShootingDistance)
+        {
+            //Move closer to player
+
+
+        }
+        else if (distToPlayer < minShootingDistance)
+        {
+            //Move away from player
+
+
+        }
+        else
+        {
+
+            Ray ray = new Ray(bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000f, boss.pillarLayer))
+            {
+
+            }
+            else if (Physics.Raycast(ray, out hit, 1000f, boss.playerLayer))
+            {
+                //If we aiming at player with clean line of sight stay here
+                boss.SetNavTarget(this.transform.position);
+            }
+            else
+            {
+                //Keep moving along as normal
+            }
+        }
+
+
+
+
 
     }
 
@@ -70,12 +109,10 @@ public class BossAbilityShoot : BossAbility
     {
 
         //First part is rotating turret head to look at player on y axis
-
-        //No idea if this will work but should incorporate player accelleration?
-        Vector3 targetPosition = playerMovement.transform.position + (Vector3.Distance(this.transform.position, playerMovement.transform.position) * Time.deltaTime * shotSpeed * playerMovement.playerAccelaration);
-
+        Vector3 targetPosition = playerMovement.transform.position + (Vector3.Distance(this.transform.position, playerMovement.transform.position) * Time.deltaTime * shotSpeed * playerMovement.playerAccelaration); //No idea if this will work but should incorporate player accelleration?
         Vector3 lookPos = new Vector3(targetPosition.x, turretHeadRotatePoint.position.y, targetPosition.z);
         Vector3 lookDir = (lookPos - turretHeadRotatePoint.position).normalized;
+
         Quaternion look = Quaternion.LookRotation(lookDir, transform.up);
         turretHeadRotatePoint.rotation = Quaternion.Lerp(turretHeadRotatePoint.rotation, look, rotateTurretSpeed * Time.deltaTime);
 
@@ -89,7 +126,6 @@ public class BossAbilityShoot : BossAbility
         pivot = Quaternion.Euler(xClamp, 0, 0);
 
         turretHeadAimPoint.rotation = Quaternion.Lerp(turretHeadAimPoint.rotation, pivot, pivotTurretSpeed * Time.deltaTime);
-
     }
 
     float AngleBetweenPoints(Vector3 a, Vector3 b)
