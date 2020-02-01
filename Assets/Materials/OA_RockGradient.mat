@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test
+  m_Name: OA_RockGradient
   m_Shader: {fileID: -6465566751694194690, guid: 2899343c3baa9a24b91f644910aaaba7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -37,11 +37,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_9CCDFFCF:
-        m_Texture: {fileID: 2800000, guid: 82d275ed58fcfde40bc60d3cc9d3b55a, type: 3}
+        m_Texture: {fileID: 2800000, guid: e59cc219f6b86b247a04b2b1e4417445, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_C6B54A71:
-        m_Texture: {fileID: 2800000, guid: 82d275ed58fcfde40bc60d3cc9d3b55a, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -75,8 +75,8 @@ Material:
     m_Floats:
     - Vector1_330486B4: 0.5
     - Vector1_3E2F163E: 0
-    - Vector1_579F5930: 1
-    - Vector1_8BF0819E: 0.602
+    - Vector1_579F5930: 0
+    - Vector1_8BF0819E: 0.421
     - Vector1_DAD207C0: 0
     - Vector1_E3E4CBE1: 1
     - _AlphaClip: 0
@@ -103,7 +103,7 @@ Material:
     m_Colors:
     - Color_A4376733: {r: 1, g: 1, b: 1, a: 0}
     - Color_AD8D843D: {r: 1, g: 1, b: 1, a: 0}
-    - Vector3_34F43E7A: {r: 2, g: 2, b: 0, a: 0}
+    - Vector3_34F43E7A: {r: 2, g: 5, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
