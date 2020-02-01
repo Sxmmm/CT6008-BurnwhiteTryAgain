@@ -14,9 +14,40 @@ public class LineRendererManager : MonoBehaviour
 
     private GameObject m_lrPrefab = null;
 
+    private float m_fadeSpeed = 0.5f;
+
+    private int m_lineColourShaderID;
+
     private void Awake()
     {
         InitialiseVariables();
+    }
+
+    private void Update()
+    {
+        foreach(LineRenderer lr in m_activeLR)
+        {
+            FadeInLR(lr);
+        }
+
+        foreach(LineRenderer lr in m_inactiveLR)
+        {
+            FadeOutLR(lr);
+        }
+    }
+
+    private void FadeInLR(LineRenderer a_lr)
+    {
+        float a = a_lr.material.GetFloat(m_lineColourShaderID);
+        a = Mathf.MoveTowards(a, 1f, Time.deltaTime * m_fadeSpeed);
+        a_lr.material.SetFloat(m_lineColourShaderID, a);
+    }
+
+    private void FadeOutLR(LineRenderer a_lr)
+    {
+        float a = a_lr.material.GetFloat(m_lineColourShaderID);
+        a = Mathf.MoveTowards(a, 0f, Time.deltaTime * m_fadeSpeed);
+        a_lr.material.SetFloat(m_lineColourShaderID, a);
     }
 
     private void InitialiseVariables()
@@ -31,6 +62,8 @@ public class LineRendererManager : MonoBehaviour
             GameObject lr = Instantiate(m_lrPrefab, transform);
             m_inactiveLR.Add(lr.GetComponent<LineRenderer>());
         }
+
+        m_lineColourShaderID = Shader.PropertyToID("LineOpacity");
     }
 
     public LineRenderer Activate()
@@ -45,7 +78,6 @@ public class LineRendererManager : MonoBehaviour
         LineRenderer lr = m_inactiveLR[index];
         m_activeLR.Add(lr);
         m_inactiveLR.RemoveAt(index);
-        lr.gameObject.SetActive(true);
         return lr;
     }
 
@@ -54,7 +86,6 @@ public class LineRendererManager : MonoBehaviour
         if (m_activeLR.Remove(a_lr))
         {
             m_inactiveLR.Add(a_lr);
-            a_lr.gameObject.SetActive(false);
         }
     }
 }

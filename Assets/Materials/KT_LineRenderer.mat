@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZR_LineRenderer
+  m_Name: KT_LineRenderer
   m_Shader: {fileID: -6465566751694194690, guid: 5c08630d6c2773d4db4a6ee6055ee456, type: 3}
   m_ShaderKeywords: _ENVIRONMENTREFLECTIONS_OFF
   m_LightmapFlags: 4
@@ -32,6 +32,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - LineTexture:
+        m_Texture: {fileID: 2800000, guid: 5fc8dd95f91ebc04b9b8685c168fa330, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_95189605:
         m_Texture: {fileID: 2800000, guid: 5fc8dd95f91ebc04b9b8685c168fa330, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -65,6 +69,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - LineOpacity: 0
     - Vector1_839EC603: 1
     - _AlphaClip: 0
     - _Blend: 0
@@ -90,6 +95,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_1BEF2E7A: {r: 0, g: 1, b: 0.97335625, a: 1}
+    - LineColour: {r: 1, g: 0, b: 0, a: 1}
+    - ScrollDirection: {r: -5, g: 0, b: 0, a: 0}
     - Vector2_AACAC1BC: {r: -3.73, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
