@@ -14,8 +14,14 @@ public class LineRendererManager : MonoBehaviour
 
     private GameObject m_lrPrefab = null;
 
-    private float m_fadeSpeed = 0.5f;
+    private int m_arcResolution = 50;
+    public int ArcResolution
+    {
+        get { return m_arcResolution; }
+    }
 
+    private float m_fadeSpeed = 0.5f;
+    
     private int m_lineColourShaderID;
 
     private void Awake()
@@ -78,6 +84,7 @@ public class LineRendererManager : MonoBehaviour
         LineRenderer lr = m_inactiveLR[index];
         m_activeLR.Add(lr);
         m_inactiveLR.RemoveAt(index);
+        lr.positionCount = m_arcResolution;
         return lr;
     }
 
