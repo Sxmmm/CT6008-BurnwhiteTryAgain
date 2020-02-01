@@ -10,7 +10,6 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 public class PillarController : MonoBehaviour
 {
-    [SerializeField] private int m_arcResolution = 20;
     [SerializeField] private float m_arcYOffset = 5f;
     [SerializeField] private Vector3 m_beamOriginOffset = Vector3.zero;
     private Vector3 BeamOrigin
@@ -60,18 +59,15 @@ public class PillarController : MonoBehaviour
     {
         foreach(Healable h in m_healables)
         {
-            h.lr.positionCount = m_arcResolution;
-            Vector3[] trajectory = new Vector3[m_arcResolution];
+            Vector3[] trajectory = new Vector3[lrm.ArcResolution];
 
             float height = Mathf.Max(BeamOrigin.y, h.hc.transform.position.y);
             Vector3 middlePos = Vector3.Lerp(BeamOrigin, h.hc.transform.position, 0.5f);
             middlePos.y = height + m_arcYOffset;
 
-            for (int i = 0; i < m_arcResolution; ++i)
+            for (int i = 0; i < lrm.ArcResolution; ++i)
             {
-                float t = (float)i / (float)m_arcResolution;
-                if (i == m_arcResolution - 1)
-                    t = 1f;
+                float t = (float)i / (float)lrm.ArcResolution;
 
                 Vector3 p1 = Vector3.Lerp(BeamOrigin, middlePos, t);
                 Vector3 p2 = Vector3.Lerp(middlePos, h.hc.ObjectBeamPos, t);
